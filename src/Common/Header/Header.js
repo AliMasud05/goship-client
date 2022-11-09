@@ -12,7 +12,7 @@ const Header = () => {
                     <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                         <li><Link to='/'>item 3</Link></li>
                         <li><Link to='/'>item 3</Link></li>
-                        <li><Link to='/'>item 3</Link></li>
+                        <li><Link to='/services'>SERVICES</Link></li>
                     </ul>
                 </div>
                 <a href='/' className="btn btn-ghost normal-case text-xl">daisyUI</a>
@@ -23,11 +23,11 @@ const Header = () => {
                     
                     <li><Link to='/'>item 3</Link></li>
                     <li><Link to='/'>item 3</Link></li>
-                    <li><Link to='/'>item 3</Link></li>
+                    <li><Link to='/services'>SERVICES</Link></li>
                 </ul>
             </div>
             <div className="navbar-end">
-                <a className="btn">Get started</a>
+                <a href='/' className="btn">Get started</a>
             </div>
         </div>
     );
