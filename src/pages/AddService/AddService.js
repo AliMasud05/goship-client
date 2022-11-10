@@ -34,7 +34,7 @@ const AddService = () => {
                     alert('review added successfully');
                     form.reset();
                 }
-                console.log(data)
+               // console.log(data)
             })
             .catch(err => console.error(err));
     }

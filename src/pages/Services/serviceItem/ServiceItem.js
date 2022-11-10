@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 
 const ServiceItem = ({service}) => {
-    console.log(service)
+   // console.log(service)
     const{about,cost,image,rating,name,_id}=service;
     return (
         <div>

@@ -33,7 +33,7 @@ const ServiceDetails = () => {
             Option:message,
 
         }
-        console.log(review);
+       // console.log(review);
         fetch('http://localhost:5000/reviews',{
              method:'POST',
              headers:{
@@ -48,7 +48,8 @@ const ServiceDetails = () => {
                alert('review added successfully');
                 form.reset();  
             }
-            console.log(data)})
+            //console.log(data)
+        })
         .catch(err=>console.error(err));
 
 

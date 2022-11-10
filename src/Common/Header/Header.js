@@ -30,11 +30,22 @@ const Header = () => {
                     
                     {
                         user?.uid?
+                        <>
+                        <li><Link to='/add_service'>ADD SERVICE</Link></li>
+                       <li><Link to='/my_reviews'>MY REVIEW</Link></li>
+                        <button onClick={handleLogOut}>LOGOUT</button>
+                        </>
+
+                       :
+                       <>
+                       <li><Link to='/signup'>Sign Up</Link></li>
+                       <li><Link to='/login'>Login</Link></li>
+                       </>
                         
                     }
                     
 
-                    <button onClick={handleLogOut}>LOGOUT</button>
+                    
                 </ul>
             </div>
             <div className="navbar-end">
