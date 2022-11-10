@@ -1,16 +1,19 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import 'react-photo-view/dist/react-photo-view.css';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
+import CardReviews from '../CardReviews/CardReviews';
 
 const ServiceDetails = () => {
     const {_id,name,cost,about,rating,image}=useLoaderData();
     const{user}=useContext(AuthContext);
-    const [reviews ,setReviews] =useState({});
-    const url = `http://localhost:5000/reviews?review_id=${_id}`
+    const [reviews ,setReviews] =useState([]);
+   
     useEffect(()=>{
-        fetch(url)
+        fetch(`http://localhost:5000/reviews?review_id=${_id}`)
+        .then(res=>res.json())
+        .then(data=>setReviews(data))
            
     },[user?.email]);
 
@@ -30,7 +33,7 @@ const ServiceDetails = () => {
             reviewer:reviewer,
             email:email,
             img:image,
-            Option:message,
+            opinion:message,
 
         }
        // console.log(review);
@@ -76,21 +79,38 @@ const ServiceDetails = () => {
                 </div>
                 
             </div>
-            <div>review{reviews.length}</div>
+                <h1 className='text-2xl font-serif font-bold my-3 bg-amber-600 text-black'>Client Review</h1>
+            <div className='grid grid-cols-1 lg:grid-cols-2'>
+                {
+                    reviews.map(review=><CardReviews
+                    key={review._id}
+                    review={review}
+                    ></CardReviews>)
+
+                }
+            </div>
+           
 
             <div>
-                <form onSubmit={handleReview}  className='border  rounded-lg grid grid-cols-1  w-3/5 mx-auto my-4 py-3'>
-                    <input  type="text" name='name' placeholder="Your name" className="input input-bordered w-full mx-auto max-w-xs" />
-                    <input type="url"  placeholder='upload image url' name="url" id="" className="input input-bordered w-full mx-auto max-w-xs" />
+                {
+                    user?.uid?
+                    <>
+                            <form onSubmit={handleReview} className='border  rounded-lg grid grid-cols-1  w-3/5 mx-auto my-4 py-3'>
+                                <input type="text" name='name' placeholder="Your name" className="input input-bordered w-full mx-auto max-w-xs" />
+                                <input type="url" placeholder='upload image url' name="url" id="" className="input input-bordered w-full mx-auto max-w-xs" />
 
-                    <input type="email" placeholder="email" defaultValue={user?.email} className="input input-bordered mx-auto my-2  w-full max-w-xs" />
-                    
-                    <textarea name='review' className="textarea textarea-accent w-1/2 h-28  mx-auto " placeholder="Bio"></textarea>
-                    <button type='submit' className='btn glass bg-orange-600 text-black w-32 mx-auto my-3'>Add Review</button>
+                                <input type="email" placeholder="email" defaultValue={user?.email} className="input input-bordered mx-auto my-2  w-full max-w-xs" />
+
+                                <textarea name='review' className="textarea textarea-accent w-1/2 h-28  mx-auto " placeholder="Bio"></textarea>
+                                <button type='submit' className='btn glass bg-orange-600 text-black w-32 mx-auto my-3'>Add Review</button>
 
 
 
-                </form>
+                            </form>
+                    </>
+                    :
+                    <Link to='/login' className='btn btn-info'>kindly, login for add review </Link>
+                }
             </div>
         </div>
     );
