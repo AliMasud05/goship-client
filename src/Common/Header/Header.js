@@ -39,6 +39,7 @@ const Header = () => {
             </div>
             <div className="navbar-end">
                 <p>name:{user?.displayName?user.displayName:'log in'}</p>
+                <button className='btn mx-2 btn-success '><Link to='/blog'>Blog</Link></button>
                 <a href='/' className="btn">Get started</a>
             </div>
         </div>
