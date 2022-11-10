@@ -31,8 +31,8 @@ const Header = () => {
                     
                     <li><Link to='/signup'>Sign Up</Link></li>
                     <li><Link to='/login'>Login</Link></li>
-                    <li><Link to='/services'>ADD SERVICE</Link></li>
-                    <li><Link to='/services'>MY REVIEW</Link></li>
+                    <li><Link to='/add_service'>ADD SERVICE</Link></li>
+                    <li><Link to='/my_reviews'>MY REVIEW</Link></li>
 
                     <button onClick={handleLogOut}>LOGOUT</button>
                 </ul>
